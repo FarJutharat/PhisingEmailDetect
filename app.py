@@ -1,9 +1,13 @@
 from flask import Flask,render_template,url_for,request
 import pandas as pd 
 import pickle
+
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.externals import joblib
+#from sklearn.naive_bayes import MultinomialNB
+#from sklearn.externals 
+import joblib
+# import sklearn.external.joblib as extjoblib
+# import joblib
 
 
 app = Flask(__name__)
@@ -14,10 +18,10 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-	df= pd.read_csv("spam.csv", encoding="latin-1")
-	df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1, inplace=True)
+	df= pd.read_csv("bigDATA.csv", encoding="latin-1")
+	df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1, inplace=True) #ลบcolumที่ไม่จำเป็นออก
 	# Features and Labels
-	df['label'] = df['v1'].map({'ham': 0, 'spam': 1})
+	df['label'] = df['v1'].map({'ham': 0, 'phising': 1})
 	df['message']=df['v2']
 	df.drop(['v1','v2'],axis=1,inplace=True)
 	X = df['message']
@@ -35,9 +39,9 @@ def predict():
 	clf.fit(X_train,y_train)
 	clf.score(X_test,y_test)
 	#Alternative Usage of Saved Model
-	# joblib.dump(clf, 'NB_spam_model.pkl')
-	# NB_spam_model = open('NB_spam_model.pkl','rb')
-	# clf = joblib.load(NB_spam_model)
+	joblib.dump(clf, 'NB_spam_model.pkl')
+	NB_spam_model = open('NB_spam_model.pkl','rb')
+	clf = joblib.load(NB_spam_model)
 
 	if request.method == 'POST':
 		message = request.form['message']
