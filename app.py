@@ -18,20 +18,28 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
+	#อ่านไฟล์ จาก.csv
 	df= pd.read_csv("spam.csv", encoding="latin-1")
-	df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1, inplace=True) #ลบcolumที่ไม่จำเป็นออก
-	# Features and Labels
+	#drop columที่ไม่จำเป็นออก
+	df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1, inplace=True) 
+	# Features and Labels 
+	#map ham => 0 และ spam => 1
 	df['label'] = df['Class'].map({'ham': 0, 'spam': 1})
 	df['message']=df['Text']
+	#drop colum ที่ไม่จำเป็นออก
 	df.drop(['Class','Text'],axis=1,inplace=True)
 	X = df['message']
 	y = df['label']
 	
-	# Extract Feature With CountVectorizer
+	# Extract Feature  With CountVectorizer (แยกคณสมบัติโดยการนับความถี่ของคำ)
 	cv = CountVectorizer()
 	X = cv.fit_transform(X) # Fit the Data
+	#ขอใช้คำสั่ง train_test_split จากไลบรารี่ scikit-learn
 	from sklearn.model_selection import train_test_split
-	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+	#แบ่งข้อมูลสำหรับสอน(train)ออกเป็น 70% และสำหรับการทดสอบ (test)ออกเป็น30% และกำหนดrandom_state=15 คือสุ่มทีละ 15 ตัว
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=45)
+	
+	
 	#Naive Bayes Classifier
 	from sklearn.naive_bayes import MultinomialNB
 

@@ -5,27 +5,22 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-
+	<body style="background-color:#d0efff;">
 	<header>
 		<div class="container">
-		<div id="brandname">
-			ML App
+			<div id="brandname">
+				<h1 style="color:#03254c;  font-size:80px;  position:relative; left:320px; top:-40px;">Spam Detector For Email</h1>
+			</div>
+			<h2 style="color:#03254c;  font-size:30px;  position:relative; left:550px; top:-80px;">Machine Learning App with Flask</h2>
 		</div>
-		<h2>Spam Detector For SMS Messages</h2>
-		
-	</div>
 	</header>
-	<p style="color:blue;font-size:20;text-align: center;"><b>Results for Comment</b></p>
-	<div class="results">
-
-
-		
-	{% if prediction == 1%}
-	<h2 style="color:red;">Spam</h2>
-	{% elif prediction == 0%}
-	<h2 style="color:blue;">Not a Spam (It is a Ham)</h2>
-	{% endif %}
-
+	<p style="color:#03254c;  font-size:50px; position:relative; left:550px; top:-60px; ">Results for Comment</p>
+	<div class="results">	
+		 <!-- {% if prediction == 1%} -->
+		 <h3 style="color:#ff0000;  font-size:50px;  position:relative; left:600px; top:-30px;" > Spam <img src="https://clisanti.files.wordpress.com/2012/12/aboo-seinfeld.gif?w=500&h=375" alt="No" width="200px" height="200px" style="vertical-align:middle">
+		<!-- {% elif prediction == 0%} -->
+		<h3 style="color:#42b1f1;  font-size:50px;  position:relative; left:460px; top:-280px;" > Not a ham (It's Ham) <img src="https://media1.tenor.com/images/41ef6e518fcec61a93255e7dc76bd5a6/tenor.gif?itemid=16841193" alt="Yes" width="200px" height="200px" style="vertical-align:middle">
+		<!-- {% endif %} -->
 	</div>
 
 </body>

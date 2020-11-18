@@ -4,28 +4,39 @@
 	<title>Home</title>
 	<!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<link rel="stylesheet" href="./home.css">
 </head>
-<body>
+<body style="background-color: #d0efff; columns: #03254c;">
 
 	<header>
 		<div class="container">
-		<div id="brandname">
-			Machine Learning App with Flask
-		</div>
-		<h2>Spam Detector For SMS Messages</h2>
+			<div id="brandname" >
+				<b style="font-size: 80px; position:relative; left:300px; top:0px;">Spam Detector For E-mail</b>
+			</div> 
+			<img src= "https://www.pngitem.com/pimgs/m/33-333076_keep-in-touch-icon-hd-png-download.png" wight="170" height="340" class="center" style = "position:relative; left:530px; top:50px;">
+			<h1 style = "position:relative; left:500px; top:-350px;">Machine Learning App with Flask</h1>
 		
-	</div>
+		</div>
 	</header>
 
 	<div class="ml-container">
 
 		<form action="{{ url_for('predict')}}" method="POST">
-		<p>Enter Your Message Here</p>
+		<p style = "position:relative; left:650px; top:-60px;">Enter Your Message Here</p>
 		<!-- <input type="text" name="comment"/> -->
-		<textarea name="message" rows="4" cols="50"></textarea>
+		<textarea name="message" rows="7" cols="70" class="center" style = "position:relative; left:500px; top:-60px;"></textarea>
 		<br/>
 
-		<input type="submit" class="btn-info" value="predict">
+		<input type="submit" class="btn-info" value="predict" 
+			style="outline:none;
+			border:none;
+			box-shadow: 10px 5px 3px black;
+			padding: 10px 20px;
+			border-radius: 10px;
+			cursor: pointer;
+			background-color: #2a9df4;
+			position:relative; left:690px; top:-55px;"
+		>
 		
 	</form>
 		
