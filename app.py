@@ -41,8 +41,8 @@ def predict():
 	
 	
 	#Naive Bayes Classifier
-	from sklearn.naive_bayes import MultinomialNB
-
+	from sklearn.naive_bayes import MultinomialNB #ใช้กับtext 
+ 	#try new model in Navie Bay	*********
 	clf = MultinomialNB()
 	clf.fit(X_train,y_train)
 	clf.score(X_test,y_test)
